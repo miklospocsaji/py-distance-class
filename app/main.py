@@ -1,4 +1,4 @@
-from typing import Self
+from __future__ import annotations
 
 
 class Distance:
@@ -12,14 +12,14 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: object) -> Self:
+    def __add__(self, other: object) -> 'Distance':
         if isinstance(other, Distance):
             return Distance(self.km + other.km)
         elif isinstance(other, (int, float)):
             return Distance(self.km + other)
         return NotImplemented
 
-    def __iadd__(self, other: object) -> Self:
+    def __iadd__(self, other: object) -> 'Distance':
         if isinstance(other, Distance):
             self.km += other.km
         elif isinstance(other, (int, float)):
@@ -28,10 +28,10 @@ class Distance:
             return NotImplemented
         return self
 
-    def __mul__(self, factor: float) -> Self:
+    def __mul__(self, factor: float) -> 'Distance':
         return Distance(self.km * factor)
 
-    def __truediv__(self, divisor: float) -> Self:
+    def __truediv__(self, divisor: float) -> 'Distance':
         """ Divide Distance by a numeric value
             and round to two decimal places. """
         return Distance(round(self.km / divisor, 2))
